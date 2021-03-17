@@ -13,7 +13,7 @@ public class Main {
 		Vinyl vinyl = new Vinyl();
 
 	    Song song1 = new Song("h", "gf");
-	    Song song2 = new Song("fox","family");
+	    Song song2 = new Song("f","fa");
 
 	    // cd.writeSong(song2);
 	    vinyl.writeSong(song1);
