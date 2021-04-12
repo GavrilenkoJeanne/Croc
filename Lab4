@@ -25,7 +25,7 @@ public class Main {
             System.out.println("No file");
         }
 
-        Pattern pattern = Pattern.compile("\\w+", Pattern.UNICODE_CHARACTER_CLASS);
+        Pattern pattern = Pattern.compile("^([a-z0-9_\\.-]+)@([a-z0-9_\\.-]+)\\.([a-z\\.]{2,6})$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
          count++;
