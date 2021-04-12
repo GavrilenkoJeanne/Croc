@@ -1,0 +1,38 @@
+package com.company;
+
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args)  {
+
+        String path = args[0];
+        String text = "";
+        int count = 0;
+
+        if (args.length == 0) {
+            throw new IllegalArgumentException("No path to file");
+        }
+
+        try (Scanner in = new Scanner(new FileReader(path))) {
+            while (in.hasNextLine())
+                text = text.concat(in.nextLine() + " ");
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("No file");
+        }
+
+        Pattern pattern = Pattern.compile("\\w+", Pattern.UNICODE_CHARACTER_CLASS);
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+         count++;
+        }
+
+        System.out.println(text);
+        System.out.println(count);
+
+    }
+}
