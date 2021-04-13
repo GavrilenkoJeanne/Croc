@@ -33,7 +33,7 @@ public class Main {
 
         int n = normalized.size();
         for(int i = 0; i < n; i++){
-            System.out.printf(normalized.peekFirst());
+            System.out.print(normalized.peekFirst());
             if(i < n - 1){
                 System.out.print("/");
             }
