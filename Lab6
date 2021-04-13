@@ -1,0 +1,49 @@
+import java.util.Deque;
+import java.util.ArrayDeque;
+
+/**
+ *  ArrayDeque играет роль временного хранилища данных, в котором с помощью методов интерфейса Deque производится нормализация пути, записанного в переменную path.
+ * В конце с помощью всё тех же методов реализуется разделение элементов пути символом "/" и вывод уже нормализованного пути.
+ */
+ 
+public class Main {
+
+    public static void main(String[] args) {
+
+        String path = "КРОК/task_6_2/src/./../../task_6_1/../../../мемы/котики";
+        final String cur = ".";
+        final String prev = "..";
+        final String delimiter = "/";
+
+        String[] parts = path.split(delimiter);
+        Deque<String> normalized = new ArrayDeque<>();
+
+        for (int i = 0; i < parts.length; i++) {
+           switch (parts[i]) {
+              case cur:
+                  break;
+              case prev:
+                  if (normalized.peekLast() == null) {
+                      normalized.offerLast(prev);
+                  } else if (normalized.peekLast().equals(prev)) {
+                      normalized.offerLast(prev);
+                  } else {
+                      normalized.removeLast();
+                  }
+                  break;
+              default:
+                  normalized.offerLast(parts[i]);
+          }
+      }
+
+        int n = normalized.size();
+        for(int i = 0; i < n; i++){
+            System.out.print(normalized.peekFirst());
+            if(i < n - 1){
+                System.out.print("/");
+            }
+            normalized.removeFirst();
+        }
+        System.out.println();
+    }
+}
