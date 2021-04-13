@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        String path = "КРОК/task_6_2/src/./../../task_6_1/../../../мемы/котики";
+        final String cur = ".";
+        final String prev = "..";
+        final String delimiter = "/";
+
+        String[] parts = path.split(delimiter);
+        Deque<String> normalized = new LinkedList<>();
+
+        for (int i = 0; i < parts.length; i++) {
+            String last = normalized.peekLast();
+            switch (parts[i]) {
+                case cur:
+                    break;
+                case prev:
+                    if (last == null) {
+                        normalized.offerLast(prev);
+                    } else if (last.equals(prev)) {
+                        normalized.offerLast(prev);
+                    } else {
+                        normalized.removeLast();
+                    }
+                    break;
+                default:
+                    normalized.offerLast(parts[i]);
+            }
+        }
+
+        int n = normalized.size();
+        for(int i = 0; i < n; i++){
+            System.out.printf(normalized.peekFirst());
+            if(i < n - 1){
+                System.out.print("/");
+            }
+            normalized.removeFirst();
+        }
+        System.out.println();
+
+    }
+}
