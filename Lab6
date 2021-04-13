@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Deque;
+import java.util.ArrayDeque;
 
 /**
  *  ArrayDeque играет роль временного хранилища данных, в котором с помощью методов интерфейса Deque производится нормализация пути, записанного в переменную path.
