@@ -1,5 +1,10 @@
 import java.util.*;
 
+/**
+ * В программе normalized играет роль временного хранилища данных, а в конце программы ответ снова
+ * возвращается в виде строки используя итераторы.
+ */
+ 
 public class Main {
 
     public static void main(String[] args) {
@@ -13,23 +18,22 @@ public class Main {
         Deque<String> normalized = new ArrayDeque<>();
 
         for (int i = 0; i < parts.length; i++) {
-            String last = normalized.peekLast();
-            switch (parts[i]) {
-                case cur:
-                    break;
-                case prev:
-                    if (last == null) {
-                        normalized.offerLast(prev);
-                    } else if (last.equals(prev)) {
-                        normalized.offerLast(prev);
-                    } else {
-                        normalized.removeLast();
-                    }
-                    break;
-                default:
-                    normalized.offerLast(parts[i]);
-            }
-        }
+           switch (parts[i]) {
+              case cur:
+                  break;
+              case prev:
+                  if (normalized.peekLast() == null) {
+                      normalized.offerLast(prev);
+                  } else if (normalized.peekLast().equals(prev)) {
+                      normalized.offerLast(prev);
+                  } else {
+                      normalized.removeLast();
+                  }
+                  break;
+              default:
+                  normalized.offerLast(parts[i]);
+          }
+      }
 
         int n = normalized.size();
         for(int i = 0; i < n; i++){
